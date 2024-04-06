@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Orders</title>
+    <link rel="stylesheet" href="css/Cupcake.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<header>
+
+    <img src="../public/images/cupcakelogo.png" th:src="@{/images/cupcakelogo.png}" width="100%" alt="Cupcake Logo">
+</header>
+
+<h1>Customer Orders</h1>
+
+<!-- Form to submit the order ID for deletion -->
+<form action="/deleteOrder" method="post">
+    <table class="order-table">
+        <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Antal</th>
+            <th>Sum</th>
+            <th>User ID</th>
+            <th>Remove</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Iterate over the list of orders and display each order in a row -->
+        <tr th:each="order : ${customerList}">
+            <td th:text="${order.orderId}"></td>
+            <td th:text="${order.antal}"></td>
+            <td th:text="${order.sum}"></td>
+            <td th:text="${order.userId}"></td>
+            <td>
+                <!-- Button to submit the form and delete the order -->
+                <button type="submit" name="orderId" th:value="${order.orderId}">Delete</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+
+</body>
+</html>
+

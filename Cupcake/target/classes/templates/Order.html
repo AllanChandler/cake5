@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/Cupcake.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders</title>
+</head>
+<body>
+
+<header>
+    <img src="../public/images/cupcakelogo.png" th:src="@{/images/cupcakelogo.png}" width="100%"/>
+</header>
+
+<h1>OrderLines</h1>
+
+<table class="order-line-table">
+    <thead>
+    <tr>
+        <th>Order Line ID</th>
+        <th>Amount</th>
+        <th>Price</th>
+        <th>Topping ID</th>
+        <th>Bund ID</th>
+        <th>Order ID</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="orderLine : ${orderList}">
+        <td th:text="${orderLine.orderLineId}">Order Line ID</td>
+        <td th:text="${orderLine.antal}">Amount</td>
+        <td th:text="${orderLine.price}">Price</td>
+        <td th:text="${orderLine.toppingId}">Topping ID</td>
+        <td th:text="${orderLine.bundId}">Bund ID</td>
+        <td th:text="${orderLine.orderId}">Order ID</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
+

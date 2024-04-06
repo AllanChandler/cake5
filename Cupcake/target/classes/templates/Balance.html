@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Balance</title>
+    <link rel="stylesheet" href="css/Cupcake.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<header>
+    <img src="../public/images/cupcakelogo.png" th:src="@{/images/cupcakelogo.png}" width="100%"/>
+</header>
+
+<h1>Add Balance to Customer Account</h1>
+<form action="/addBalance" method="post">
+    <!-- Input field for entering customer email -->
+    <label for="email">Customer Email:</label>
+    <input type="text" id="email" name="email" th:required="required"><br><br>
+
+    <!-- Input field for entering balance amount -->
+    <label for="balance">Amount to Add:</label>
+    <input type="number" id="balance" name="balance" th:required="required"><br><br>
+
+    <!-- Submit button to add balance -->
+    <button type="submit" class="button-size">Add Balance</button>
+</form>
+
+<div th:if="${error}">
+<p th:text="${error}" style="color: red;"></p>
+</div>
+
+</body>
+</html>

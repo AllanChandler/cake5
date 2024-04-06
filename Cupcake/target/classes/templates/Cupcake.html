@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Cupcake</title>
+  <link rel="stylesheet" href="css/Cupcake.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<div id="page">
+
+  <header>
+    <img src="../public/images/cupcakelogo.png" th:src="@{/images/cupcakelogo.png}" width="100%"/>
+  </header>
+
+  <div class="nav-container">
+    <nav>
+      <div id="left-nav">
+        <div class="Ordrer-Kunder">
+          <form action="/orderList" method="get">
+            <button type="submit" class="button-size">Ordrer</button>
+          </form>
+          <form action="/customerList" method="get">
+          <button type="submit" class="button-size">Kunder</button>
+          </form>
+          <form action="/addBalance" method="get">
+            <button type="submit" class="button-size">Balance</button>
+          </form>
+
+        </div>
+
+        <div id="right-nav" class="text-size">cph-ac326@cphbusiness.dk <img src=" images/kurv.png" width="10%"/>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+
+  <div class="cupcake-container">
+    <div id="content">
+      <div id="intro-text">
+        <h1>Velkommen ombord</h1>
+        <h2>Øens bedste cupcakes. Vælg og bestil her:</h2>
+      </div>
+
+      <div id="dropdowns">
+        <form action="/submitOrder" method="post">
+          <!-- Dropdown for Bund -->
+          <select id="bund" name="bundId"> <!-- Changed name to bundId -->
+            <option value="" selected disabled hidden>Vælg bund</option>
+            <!-- Use bund.bundId instead of bund.bund_id -->
+            <option th:each="bund : ${bundList}" th:value="${bund.bundId}"
+                    th:text="${bund.bundName + ' (' + bund.bundPrice + ' kr)'}"></option>
+          </select>
+
+
+          <!-- Dropdown for Topping -->
+          <select id="topping" name="toppingId"> <!-- Change name to toppingId -->
+            <option value="" selected disabled hidden>Vælg topping</option>
+            <!-- Use topping.toppingId instead of topping.topping_id -->
+            <option th:each="topping : ${toppingList}" th:value="${topping.toppingId}"
+                    th:text="${topping.toppingName + ' (' + topping.toppingPrice + ' kr)'}"></option>
+          </select>
+
+
+          <!-- Antal dropdown -->
+          <select id="quantity" name="quantity">
+            <option value="" selected disabled hidden>Vælg antal</option>
+            <option value="1">1 stk</option>
+            <option value="2">2 stk</option>
+            <option value="3">3 stk</option>
+            <option value="4">4 stk</option>
+            <option value="5">5 stk</option>
+          </select>
+        </form>
+      </div>
+
+      <br>
+
+      <div class="payment">
+        <button type="submit">Læg i kurv</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
